@@ -1,5 +1,4 @@
 import re
-import requests
 
 
 def parse_download_info(log_lines):
@@ -10,7 +9,7 @@ def parse_download_info(log_lines):
     }
 
     for line in reversed(log_lines):
-        speed_match = re.search(r"([\d.]+)\s*Mbps", line)
+        speed_match = re.search(r"Current download rate: ([\d.]+)\s*Mbps", line)
         if speed_match:
             result["status"] = "downloading"
             result["speed"] = speed_match.group(1) + " MB/s"
